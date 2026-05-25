@@ -68,6 +68,16 @@ Tools used: BLAST → InterProScan → RCSB PDB → Composition
 
 No BLAST hits. InterProScan detects only a weak coiled-coil signal (14% coverage, e-value 1.0). RCSB finds nothing in experimental PDB or AlphaFold CSMs. Composition analysis finds high disorder propensity (disorder index 0.41) with enrichment in disorder-promoting residues, consistent with a regulatory IDP or hub protein.
 
+### Animated protein cards
+
+For LOW or UNKNOWN confidence sequences, ORACLE generates an animated HTML card 
+with a spinning ESMFold predicted structure colored by pLDDT confidence.
+
+| Sequence | Result | Card |
+|----------|--------|------|
+| Ga0531459_000428 (197 aa) | Uncharacterized — no database representatives | [View card ↗](https://zschreib.github.io/oracle/example_output/protein_cards/Ga0531459_000428_12414_11821_6_20260525_184209.card.html) |
+| Ga0531459_000429 (112 aa) | Uncharacterized — homolog in *Vicingus sp.* | [View card ↗](https://zschreib.github.io/oracle/example_output/protein_cards/Ga0531459_000429_2805_3143_5_20260525_182650.card.html) |
+
 ---
 
 ## Installation
