@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oracle-annotator"
+version = "0.1.0"
+description = "Autonomous annotation agent for uncharacterized protein sequences"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "GPL-3.0" }
+
+dependencies = [
+    "anthropic>=0.25.0",    # agent loop and tool use API
+    "requests>=2.31.0",     # BLAST, InterProScan, RCSB PDB REST calls
+    "biopython>=1.83",      # FASTA parsing and sequence validation
+    "python-dotenv>=1.0.0", # load ANTHROPIC_API_KEY and NCBI_API_KEY from .env
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-mock>=3.12",    # mock API calls without hitting real endpoints
+]
+
+[project.scripts]
+oracle = "oracle.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["oracle*"]

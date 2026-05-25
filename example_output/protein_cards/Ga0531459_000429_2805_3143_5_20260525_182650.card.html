@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORACLE — Ga0531459_000429_2805_3143_5</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #080c14;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 2rem;
+  }
+
+  .card {
+    width: 1100px;
+    max-width: 100%;
+    background: #0d1520;
+    border: 1px solid #1e2d42;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(0,120,255,0.08), 0 32px 64px rgba(0,0,0,0.6);
+  }
+
+  /* LEFT PANEL */
+  .left {
+    padding: 1.75rem 2rem;
+    border-right: 1px solid #1e2d42;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .oracle-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: #4a7fa5;
+    text-transform: uppercase;
+  }
+
+  .oracle-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4a7fa5;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .seq-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #3d5a73;
+    word-break: break-all;
+  }
+
+  .annotation {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e2eaf4;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .conf-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .conf-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #4a7fa5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .conf-bars {
+    display: flex;
+    gap: 3px;
+  }
+
+  .conf-bars span {
+    width: 18px;
+    height: 6px;
+    border-radius: 2px;
+  }
+
+  .conf-tier {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .divider {
+    height: 1px;
+    background: #1e2d42;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #3d5a73;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    table-layout: fixed;
+  }
+
+  td {
+    padding: 5px 4px;
+    color: #8aa4bc;
+    vertical-align: top;
+  }
+
+  .tool-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #4a7fa5;
+    width: 80px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .tool-ann {
+    color: #c8d8e8;
+    font-size: 11px;
+    word-break: break-word;
+    line-height: 1.4;
+  }
+
+  .tool-tier {
+    width: 72px;
+    white-space: nowrap;
+  }
+
+  .score-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #3d5a73;
+    text-align: right;
+    width: 70px;
+    white-space: nowrap;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  .conf-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .conf-legend > span {
+    font-size: 9px;
+    color: #3d5a73;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .conf-legend .badge {
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  tr.skipped td {
+    opacity: 0.35;
+    font-style: italic;
+  }
+
+  .plddt-section { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .plddt-bar-wrap {
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .plddt-mean {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #65cbf3;
+  }
+
+  .plddt-legend {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .plddt-legend span {
+    font-size: 10px;
+    color: #4a7fa5;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .plddt-legend span::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .warnings {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .warn-item {
+    font-size: 10px;
+    color: #b45309;
+    background: rgba(180, 83, 9, 0.08);
+    border: 1px solid rgba(180, 83, 9, 0.2);
+    border-radius: 4px;
+    padding: 4px 8px;
+    line-height: 1.4;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #3d5a73;
+  }
+
+  .meta-item strong {
+    color: #4a7fa5;
+    font-weight: 500;
+  }
+
+  /* RIGHT PANEL */
+  .right {
+    position: relative;
+    background: #080c14;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    min-height: 520px;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 8px;
+  }
+
+  .structure-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #1e2d42;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .plddt-legend-3d {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .plddt-legend-3d span {
+    font-size: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #3d5a73;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .plddt-legend-3d span::before {
+    content: '';
+    width: 8px; height: 3px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div>
+      <div class="oracle-badge">ORACLE Annotation Report</div>
+      <div class="seq-id" style="margin-top:0.4rem">Ga0531459_000429_2805_3143_5</div>
+    </div>
+
+    <div class="annotation">Uncharacterized protein (homolog detected in Vicingus sp.)</div>
+
+    <div class="conf-row">
+      <div class="conf-label">Confidence</div>
+      <div class="conf-bars"><span style="background:#fb923c"></span><span style="background:#fb923c"></span><span style="background:rgba(255,255,255,0.1)"></span><span style="background:rgba(255,255,255,0.1)"></span></div>
+      <div class="conf-tier" style="color:#fb923c">LOW</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div>
+      <div class="section-label">Evidence chain</div>
+      <table>
+        <thead>
+          <tr>
+            <td class="tool-name" style="color:#2a4a63;padding-bottom:4px">tool</td>
+            <td class="tool-ann" style="color:#2a4a63;padding-bottom:4px">result</td>
+            <td class="tool-tier" style="color:#2a4a63;padding-bottom:4px;font-family:'IBM Plex Mono',monospace;font-size:10px">tier</td>
+            <td class="score-val" style="color:#2a4a63;padding-bottom:4px">e-val</td>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr>
+          <td class="tool-name">BLAST_NR</td>
+          <td class="tool-ann">hypothetical protein</td>
+          <td class="tool-tier"><span class="badge" style="background:#facc1520;color:#facc15;border:1px solid #facc1540">MODERATE</span></td>
+          <td class="score-val">2.1e-05</td>
+        </tr>
+        <tr>
+          <td class="tool-name">HMMER_PFAM</td>
+          <td class="tool-ann">consensus disorder prediction</td>
+          <td class="tool-tier"><span class="badge" style="background:#fb923c20;color:#fb923c;border:1px solid #fb923c40">LOW</span></td>
+          <td class="score-val">n/s</td>
+        </tr>
+        <tr>
+          <td class="tool-name">RCSB_PDB</td>
+          <td class="tool-ann">No PDB hits</td>
+          <td class="tool-tier"><span class="badge" style="background:#94a3b820;color:#94a3b8;border:1px solid #94a3b840">UNKNOWN</span></td>
+          <td class="score-val">—</td>
+        </tr>
+        <tr>
+          <td class="tool-name">COMPOSITION</td>
+          <td class="tool-ann">Putative DNA/RNA-binding protein (alternative: protein-protein interaction mediator)</td>
+          <td class="tool-tier"><span class="badge" style="background:#fb923c20;color:#fb923c;border:1px solid #fb923c40">LOW</span></td>
+          <td class="score-val">—</td>
+        </tr>
+          
+        </tbody>
+      </table>
+      <div class="conf-legend">
+        <span><span class="badge" style="background:#4ade8020;border:1px solid #4ade8040;color:#4ade80">HIGH</span> strong homology, named protein</span>
+        <span><span class="badge" style="background:#facc1520;border:1px solid #facc1540;color:#facc15">MOD</span> meaningful signal, incomplete</span>
+        <span><span class="badge" style="background:#fb923c20;border:1px solid #fb923c40;color:#fb923c">LOW</span> weak or speculative evidence</span>
+        <span><span class="badge" style="background:#94a3b820;border:1px solid #94a3b840;color:#94a3b8">UNK</span> no hits above threshold</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="plddt-section">
+      <div class="section-label">Structure confidence (pLDDT)</div>
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <div class="plddt-mean">Mean 67.0 <span style="font-size:9px;color:#3d5a73;font-weight:400">/ 100</span></div>
+        <div style="font-size:10px;color:#3d5a73;font-family:'IBM Plex Mono',monospace">
+          112 residues
+        </div>
+      </div>
+      <div class="plddt-bar-wrap">
+        <div style="height:100%;display:flex"><div style="width:48.2%;background:#65cbf3;height:100%;display:inline-block;"></div><div style="width:43.8%;background:#ffdb13;height:100%;display:inline-block;"></div><div style="width:8.0%;background:#ff7d45;height:100%;display:inline-block;"></div></div>
+      </div>
+      <div class="plddt-legend">
+        <span style="--c:#0053d6"><span style="background:#0053d6;width:8px;height:8px;border-radius:2px;display:inline-block"></span>≥90 very high</span>
+        <span><span style="background:#65cbf3;width:8px;height:8px;border-radius:2px;display:inline-block"></span>70–90 high</span>
+        <span><span style="background:#ffdb13;width:8px;height:8px;border-radius:2px;display:inline-block"></span>50–70 medium</span>
+        <span><span style="background:#ff7d45;width:8px;height:8px;border-radius:2px;display:inline-block"></span>&lt;50 low</span>
+      </div>
+    </div>
+
+    <div class="warnings"><div class="warn-item">⚠ Annotation is low confidence. Sequence may be genuine dark matter with no current database representatives.</div></div>
+
+    <div class="meta-row" style="margin-top:auto">
+      <div class="meta-item"><strong>Length</strong> 112 aa</div>
+      <div class="meta-item"><strong>Structure</strong> ESMFold v1</div>
+      <div class="meta-item"><strong>Generated</strong> 2026-05-25</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: 3D canvas -->
+  <div class="right">
+    <canvas id="mol"></canvas>
+    <div class="structure-label">ESMFold predicted structure · Cα backbone</div>
+    <div class="plddt-legend-3d">
+      <span style="color:#0053d6"><span style="background:#0053d6"></span>very high</span>
+      <span style="color:#65cbf3"><span style="background:#65cbf3"></span>high</span>
+      <span style="color:#ffdb13"><span style="background:#ffdb13"></span>medium</span>
+      <span style="color:#ff7d45"><span style="background:#ff7d45"></span>low</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const ATOMS = [[-21.87, 0.42, 46.05, 46.0], [-22.53, -0.33, 42.28, 58.0], [-20.16, -3.32, 42.14, 54.0], [-19.58, -2.25, 38.33, 58.0], [-19.88, 1.56, 37.54, 54.0], [-19.89, 0.65, 33.76, 59.0], [-22.04, -2.51, 33.12, 57.0], [-23.19, -0.58, 30.07, 60.0], [-19.66, -0.75, 28.54, 63.0], [-18.8, -4.24, 29.64, 65.0], [-18.75, -7.05, 27.08, 64.0], [-21.8, -9.03, 28.22, 69.0], [-24.21, -11.43, 26.39, 71.0], [-26.63, -8.45, 26.39, 70.0], [-24.04, -5.73, 25.58, 70.0], [-22.75, -6.82, 22.0, 69.0], [-21.18, -4.11, 19.99, 64.0], [-23.76, -3.5, 17.19, 60.0], [-20.96, -3.94, 14.78, 60.0], [-18.18, -6.45, 15.32, 60.0], [-15.54, -5.23, 13.11, 64.0], [-13.89, -2.22, 11.25, 61.0], [-16.53, -0.48, 9.15, 60.0], [-16.01, -1.71, 5.69, 60.0], [-13.37, 1.17, 5.3, 60.0], [-12.52, 2.6, 1.98, 63.0], [-10.52, -0.26, 0.4, 69.0], [-6.79, 0.52, 0.58, 75.0], [-5.22, 1.36, -2.71, 76.0], [-3.19, -1.82, -2.42, 80.0], [-6.35, -3.91, -2.17, 78.0], [-7.94, -2.03, -5.03, 77.0], [-4.82, -2.49, -7.21, 78.0], [-4.64, -6.24, -6.35, 79.0], [-8.25, -6.76, -7.24, 76.0], [-7.95, -4.71, -10.38, 73.0], [-4.94, -6.8, -11.38, 74.0], [-6.76, -10.09, -10.57, 72.0], [-9.84, -9.16, -12.6, 62.0], [-7.62, -8.11, -15.65, 52.0], [-10.14, -9.94, -17.78, 49.0], [-9.58, -8.15, -21.26, 45.0], [-11.93, -5.13, -21.18, 42.0], [-10.33, -2.44, -18.81, 47.0], [-14.08, -1.49, -19.11, 42.0], [-15.29, -3.83, -16.28, 43.0], [-13.29, -2.01, -13.48, 44.0], [-16.48, -1.51, -11.68, 48.0], [-16.46, 1.53, -9.14, 52.0], [-13.21, 0.16, -7.41, 50.0], [-13.46, 3.42, -5.48, 55.0], [-10.11, 4.83, -6.7, 66.0], [-9.95, 6.48, -10.27, 73.0], [-6.29, 6.92, -9.74, 78.0], [-5.76, 3.18, -9.26, 77.0], [-7.59, 2.55, -12.49, 75.0], [-5.52, 5.05, -14.35, 78.0], [-2.38, 3.46, -13.04, 79.0], [-3.48, 0.06, -14.31, 79.0], [-4.49, 1.56, -17.62, 78.0], [-1.05, 3.17, -18.06, 80.0], [0.72, -0.05, -17.12, 79.0], [-1.11, -2.23, -19.62, 76.0], [-2.15, 0.12, -22.35, 74.0], [-0.21, 0.1, -25.81, 71.0], [-0.68, 3.77, -26.08, 71.0], [1.7, 4.48, -23.22, 72.0], [5.46, 4.96, -23.8, 78.0], [7.82, 2.23, -22.19, 83.0], [9.12, 4.57, -19.58, 87.0], [5.61, 5.46, -18.39, 85.0], [4.64, 1.8, -18.37, 85.0], [7.64, 0.87, -16.27, 86.0], [6.97, 3.61, -13.81, 87.0], [3.4, 2.6, -13.49, 85.0], [4.33, -1.05, -12.97, 84.0], [6.9, -0.07, -10.38, 87.0], [4.38, 2.04, -8.52, 85.0], [1.9, -0.84, -8.48, 83.0], [4.54, -3.28, -7.16, 86.0], [5.73, -0.84, -4.58, 86.0], [2.25, -0.42, -3.18, 84.0], [1.24, -4.12, -3.31, 83.0], [4.44, -5.79, -2.25, 82.0], [5.89, -2.85, -0.43, 82.0], [9.27, -1.15, -0.47, 79.0], [12.05, -2.96, 1.23, 77.0], [12.72, -1.55, 4.62, 77.0], [16.07, 0.24, 4.4, 77.0], [17.45, -0.35, 7.88, 76.0], [20.55, 1.81, 7.79, 73.0], [22.44, 0.57, 10.92, 70.0], [24.73, 3.53, 11.17, 67.0], [27.21, 2.19, 13.77, 62.0], [28.76, 5.59, 13.96, 57.0], [31.7, 4.51, 16.17, 58.0], [32.27, 7.87, 17.71, 58.0], [35.23, 9.27, 15.82, 57.0], [38.28, 7.56, 17.63, 54.0], [39.75, 11.1, 18.02, 53.0], [37.3, 12.11, 20.81, 54.0], [39.7, 10.5, 23.45, 53.0], [37.74, 12.32, 26.23, 52.0], [40.65, 11.21, 28.4, 53.0], [43.05, 14.2, 28.29, 50.0], [42.14, 16.31, 31.44, 51.0], [42.42, 19.81, 29.81, 51.0], [43.45, 20.93, 33.41, 52.0], [46.54, 22.75, 32.24, 53.0], [46.34, 26.0, 34.24, 55.0], [45.78, 29.16, 32.18, 58.0], [48.91, 30.89, 33.95, 66.0]];
+
+// pLDDT -> hex color
+function plddt2color(p) {
+  if (p >= 90) return 0x0053d6;
+  if (p >= 70) return 0x65cbf3;
+  if (p >= 50) return 0xffdb13;
+  return 0xff7d45;
+}
+
+const canvas = document.getElementById('mol');
+const W = canvas.parentElement.clientWidth;
+const H = canvas.parentElement.clientHeight;
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setClearColor(0x000000, 0);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 1000);
+camera.position.set(0, 0, 120);
+
+// Ambient + directional light
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+dir.position.set(1, 2, 3);
+scene.add(dir);
+
+// Center atoms
+const xs = ATOMS.map(a => a[0]);
+const ys = ATOMS.map(a => a[1]);
+const zs = ATOMS.map(a => a[2]);
+const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+const cz = (Math.min(...zs) + Math.max(...zs)) / 2;
+const span = Math.max(
+  Math.max(...xs) - Math.min(...xs),
+  Math.max(...ys) - Math.min(...ys),
+  Math.max(...zs) - Math.min(...zs)
+);
+camera.position.z = span * 1.5;
+
+const group = new THREE.Group();
+scene.add(group);
+
+// Draw Cα spheres colored by pLDDT
+const sphGeo = new THREE.SphereGeometry(0.6, 8, 8);
+ATOMS.forEach(([x, y, z, p]) => {
+  const mat = new THREE.MeshPhongMaterial({ color: plddt2color(p), shininess: 60 });
+  const sphere = new THREE.Mesh(sphGeo, mat);
+  sphere.position.set(x - cx, y - cy, z - cz);
+  group.add(sphere);
+});
+
+// Draw backbone bonds between consecutive Cα
+for (let i = 0; i < ATOMS.length - 1; i++) {
+  const [x1,y1,z1,p1] = ATOMS[i];
+  const [x2,y2,z2,p2] = ATOMS[i+1];
+  const dist = Math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2);
+  if (dist > 10) continue; // skip chain breaks
+
+  const dir3 = new THREE.Vector3(x2-x1, y2-y1, z2-z1).normalize();
+  const mid = new THREE.Vector3((x1+x2)/2-cx, (y1+y2)/2-cy, (z1+z2)/2-cz);
+
+  const cyl = new THREE.CylinderGeometry(0.25, 0.25, dist, 6);
+  const mat = new THREE.MeshPhongMaterial({ color: plddt2color((p1+p2)/2), shininess: 40 });
+  const mesh = new THREE.Mesh(cyl, mat);
+  mesh.position.copy(mid);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), dir3);
+  group.add(mesh);
+}
+
+// Animate: slow spin
+let angle = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  angle += 0.008;
+  group.rotation.y = angle;
+  group.rotation.x = Math.sin(angle * 0.3) * 0.15;
+  renderer.render(scene, camera);
+}
+animate();
+
+// Resize
+window.addEventListener('resize', () => {
+  const w = canvas.parentElement.clientWidth;
+  const h = canvas.parentElement.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+</script>
+</body>
+</html>

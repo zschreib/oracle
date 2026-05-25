@@ -1,0 +1,154 @@
+====================================================================
+ORACLE ANNOTATION REPORT
+Generated: 2026-05-25 18:42:09
+====================================================================
+
+SEQUENCE
+  ID:     Ga0531459_000428_12414_11821_6
+  Length: 197 amino acids
+
+ANNOTATION
+  Uncharacterized protein (no database representatives found)
+
+CONFIDENCE
+  ██░░ LOW
+
+WARNINGS
+  ! Annotation is low confidence. Sequence may be genuine dark matter with no current database representatives.
+
+EVIDENCE CHAIN
+--------------------------------------------------------------------
+  Step 1: BLAST_NR
+  Reason called: I'll annotate this 197 amino acid protein sequence following the systematic evidence ladder approach.
+  Result:        No significant hits
+  Confidence:    UNKNOWN
+  Reasoning:     BLASTp returned no hits above threshold. Sequence has no detectable homology in NCBI nr. Escalate to HMMer domain search to check for conserved domain signatures.
+  Escalate:      Yes, escalate to next tool
+
+  Step 2: HMMER_PFAM
+  Reason called: BLAST found no significant hits. I'll escalate to domain search to look for conserved functional signatures.
+  Result:        Coil
+  Confidence:    LOW
+  Score:         1.00e+00
+  Coverage:      14%
+  Hit ID:        Coil
+  Reasoning:     Weak or no domain signal from COILS: e-value 1.00e+00, 14% coverage. Evidence insufficient. Escalate to structural search.
+  Escalate:      Yes, escalate to next tool
+
+  Step 3: RCSB_PDB
+  Reason called: Domain search only detected a weak coiled-coil region (14% coverage, poor e-value). I'll search the PDB for structurally characterized proteins.
+  Result:        No PDB hits
+  Confidence:    UNKNOWN
+  Reasoning:     RCSB PDB sequence search found no hits above threshold. Sequence has no detectable similarity to any experimentally characterized protein structure. This is genuine dark matter: no homologs in sequence databases, no conserved domains, and no structurally characterized relatives.
+  Escalate:      Yes, escalate to next tool
+
+  Step 4: COMPOSITION
+  Reason called: All three primary tools returned no meaningful signal. Since this is a short sequence (197 aa, under 400 aa threshold) and appears to be genuine dark matter, I'll use composition analysis to generate hypotheses based on physicochemical properties.
+  Result:        Putative intrinsically disordered regulatory protein
+  Confidence:    LOW
+  Reasoning:     Sequence composition analysis (197 aa). High disorder propensity (disorder index 0.41). Enriched in disorder-promoting residues (E/K/R/S/Q/P/A/G). Consistent with hub protein, regulatory IDP, or flexible linker. All annotations are speculative and require experimental validation.
+  Escalate:      No, evidence sufficient
+
+AGENT SUMMARY
+--------------------------------------------------------------------
+  ---
+  
+  ## FINAL ANNOTATION REPORT
+  
+  ### Protein: Ga0531459_000428_12414_11821_6
+  
+  **Final Annotation:** Putative intrinsically disordered protein  
+  **Confidence Tier:** LOW
+  
+  ---
+  
+  ### Evidence Chain
+  
+  1. **BLAST against NCBI nr:** UNKNOWN confidence
+  - No significant homologs detected in the non-redundant protein
+  database
+     - Decision: Escalate to domain search
+  
+  2. **InterProScan (Pfam/TIGRFAM):** LOW confidence
+  - Detected only a weak coiled-coil signature (14% coverage,
+  e-value 1.0)
+     - Insufficient evidence for functional assignment
+     - Decision: Escalate to structural database
+  
+  3. **RCSB PDB search:** UNKNOWN confidence
+  - No similarity to experimentally characterized protein structures
+     - Confirms this is genuine "dark matter" protein
+     - Decision: Escalate to composition analysis
+  
+  4. **Composition analysis:** LOW confidence
+  - **Disorder propensity:** 0.41 (HIGH - suggests intrinsically
+  disordered region)
+  - **Enriched residues:** Glutamate (E), Lysine (K), Arginine (R),
+  Serine (S), Glutamine (Q), Proline (P), Alanine (A), Glycine (G)
+     - These are classic disorder-promoting residues
+  - **Interpretation:** Likely functions as a flexible regulatory
+  protein, hub protein, or structural linker
+  
+  ---
+  
+  ### Key Observations
+  
+  **Compositional features suggesting disorder:**
+  - Very high content of Ala (A), Gln (Q), Arg (R), and Glu (E)
+  - Multiple low-complexity repeats visible in sequence (e.g.,
+  "AQEGGAPQ", "RAQTQTAQAALG")
+  - Minimal hydrophobic clustering needed for stable fold
+  - Heptad-like patterns in some regions consistent with weak
+  coiled-coil signal from HMMer
+  
+  **Possible functional roles (speculative):**
+  - Transcriptional regulator or DNA-binding protein (high R/K
+  content)
+  - Protein-protein interaction hub (disordered regions mediate
+  promiscuous binding)
+  - Flexible linker between functional domains
+  - Chaperone or assembly cofactor
+  
+  ---
+  
+  ### Warnings and Recommendations
+  
+  ⚠️ **This is a genuine dark matter protein** with no detectable
+  homology to characterized sequences or structures.
+  
+  ⚠️ **All functional annotations are speculative** and based solely
+  on amino acid composition and disorder prediction.
+  
+  ⚠️ **Experimental validation is essential:**
+  - Circular dichroism (CD) spectroscopy to confirm disorder
+  - NMR to characterize structural dynamics
+  - Deletion studies to assess essentiality
+  - Pull-down assays to identify binding partners
+  - RNA-seq/proteomics in knockout context
+  
+  ⚠️ **Context clues to investigate:**
+  - Genomic neighborhood (is it co-located with known operons?)
+  - Expression patterns (constitutive vs. stress-induced?)
+  - Phylogenetic distribution (lineage-specific novelty vs.
+  fast-evolving homolog?)
+  
+  ---
+  
+  ### Tools Used
+  ✅ blast_nr — No hits  
+  ✅ hmmer_pfam — Weak coiled-coil signal only  
+  ✅ rcsb_pdb — No hits  
+  ✅ composition — Disorder prediction  
+  
+  ### Tools Skipped
+  None — complete evidence ladder traversed.
+  
+  ---
+  
+  **Bottom line:** This protein has no characterized homologs and
+  likely represents a lineage-specific innovation. Compositional
+  analysis suggests it functions as an intrinsically disordered
+  regulatory or structural protein, but experimental
+  characterization is required for confident functional assignment.
+
+====================================================================

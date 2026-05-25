@@ -1,0 +1,16 @@
+name: oracle
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      # core runtime
+      - anthropic>=0.25.0
+      - requests>=2.31.0
+      - biopython>=1.83
+      # development and testing
+      - pytest>=8.0
+      - pytest-mock>=3.12
+      - python-dotenv>=1.0.0
