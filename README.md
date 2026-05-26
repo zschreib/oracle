@@ -85,7 +85,7 @@ with a spinning ESMFold predicted structure colored by pLDDT confidence.
 **Conda (recommended for bioinformatics environments):**
 
 ```bash
-git clone https://github.com/zschreiber/oracle
+git clone https://github.com/zschreib/oracle.git
 cd oracle
 conda env create -f environment.yml
 conda activate oracle
@@ -95,7 +95,7 @@ pip install -e .
 **pip:**
 
 ```bash
-git clone https://github.com/zschreiber/oracle
+git clone https://github.com/zschreib/oracle.git
 cd oracle
 pip install -e .
 ```
