@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Autonomous annotation agent for uncharacterized protein sequences"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "GPL-3.0" }
+license = { text = "MIT License" }
 
 dependencies = [
     "anthropic>=0.25.0",    # agent loop and tool use API
